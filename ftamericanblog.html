@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fut American Blog</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #4CAF50; /* Verde do campo */
+            color: white;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-image: url('D:/Arquivos de usuario/Documents/Luciano/Cursos/Sistemas de Informação/2024/Segundo semestre/Framework/campo de futebol americano.png');
+            background-size: cover; /* Para ajustar a imagem ao tamanho do cabeçalho */
+            background-position: center;
+            font-family: 'Impact', sans-serif;
+            font-size: 36px;
+            text-transform: uppercase;
+            color: white;
+            position: relative;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #66BB6A; /* Verde claro */
+            border: 2px solid #388E3C; /* Bordas para simular o campo */
+        }
+        .sidebar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 250px;
+            background-color: #2E7D32;
+            padding: 10px;
+            border-radius: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .sidebar h3 {
+            text-align: center;
+            color: #FFD600;
+        }
+        .comment {
+            background-color: #4CAF50;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            color: white;
+        }
+        .comment time {
+            display: block;
+            font-size: 12px;
+            color: #FFD600;
+            text-align: right;
+        }
+        h2 {
+            color: #FFD600; /* Amarelo */
+        }
+        p {
+            line-height: 1.6;
+        }
+        img {
+            max-width: 100%; /* Para que a imagem não ultrapasse a largura do container */
+            height: auto; /* Manter a proporção da imagem */
+            border: 2px solid #388E3C; /* Bordas para as imagens */
+            margin: 10px 0; /* Margem entre as imagens e o texto */
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-image: url('D:/Arquivos de usuario/Documents/Luciano/Cursos/Sistemas de Informação/2024/Segundo semestre/Framework/campo de futebol americano.png');
+            background-size: cover; /* Para ajustar a imagem ao tamanho do rodapé */
+            background-position: center;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .comments-section {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            color: black;
+        }
+        .comments-section h3 {
+            margin-top: 0;
+        }
+        .comments-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .comments-section input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #ff9800;
+            border: none;
+            cursor: pointer;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Fut American Blog
+        <!-- Barra de Pesquisa -->
+        <div class="search-bar">
+            <form action="/search" method="GET">
+                <input type="text" name="query" placeholder="Pesquisar...">
+                <input type="submit" value="Buscar">
+            </form>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Bem-vindo ao Fut American Blog!</h2>
+        <p>Aqui você encontrará as últimas notícias, análises e comentários sobre o futebol americano. Fique ligado para não perder nada!</p>
+        
+        <h2>Últimas Postagens</h2>
+        <p>Post 1: Como arremessar a bola de futebol americano?</p>
+        <img src="D:/Arquivos de usuario/Documents/Luciano/Cursos/Sistemas de Informação/2024/Segundo semestre/Framework/Teddy-Bridgewater-460x261.jpg" alt="Quaterback">
+        
+        <p>Post 2: As melhores jogadas da temporada...</p>
+        <img src="D:/Arquivos de usuario/Documents/Luciano/Cursos/Sistemas de Informação/2024/Segundo semestre/Framework/Chiefs-620x350.jpg" alt="Jogada de Futebol Americano 2">
+        
+        <p>Post 3: Entrevista com um jogador famoso...</p>
+        <img src="D:/Arquivos de usuario/Documents/Luciano/Cursos/Sistemas de Informação/2024/Segundo semestre/Framework/harrison-smith-lance-kendricks-nfl-minnesota-vikings-st.-louis-rams-620x270.jpg" alt="Jogada de Futebol Americano 3">
+    </div>
+
+    <!-- Barra lateral para exibir os comentários -->
+    <div class="sidebar">
+        <h3>Comentários Recentes</h3>
+        <div id="comment-list">
+            <!-- Comentários inseridos aparecerão aqui -->
+        </div>
+    </div>
+
+    <footer>
+        <!-- Seção de Comentários -->
+        <div class="comments-section">
+            <h3>Deixe um comentário</h3>
+            <form id="commentForm">
+                <textarea name="comment" id="comment" rows="5" placeholder="Escreva seu comentário aqui..."></textarea>
+                <br>
+                <input type="submit" value="Enviar Comentário">
+            </form>
+        </div>
+        © 2024 Fut American Blog
+    </footer>
+
+    <script>
+        document.getElementById('commentForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio do formulário para o servidor
+
+            // Obtém o comentário
+            const commentText = document.getElementById('comment').value;
+
+            // Verifica se o comentário não está vazio
+            if (commentText.trim() === "") {
+                alert("Por favor, escreva um comentário antes de enviar.");
+                return;
+            }
+
+            // Obtém a data e a hora atual
+            const currentDateTime = new Date();
+            const formattedDateTime = currentDateTime.toLocaleString();
+
+            // Cria um novo elemento de comentário
+            const commentElement = document.createElement('div');
+            commentElement.classList.add('comment');
+            commentElement.innerHTML = `
+                <p>${commentText}</p>
+                <time>${formattedDateTime}</time>
+            `;
+
+            // Adiciona o novo comentário à lista de comentários
+            document.getElementById('comment-list').prepend(commentElement);
+
+            // Limpa o campo de texto do formulário
+            document.getElementById('comment').value = '';
+        });
+    </script>
+</body>
+</html>
